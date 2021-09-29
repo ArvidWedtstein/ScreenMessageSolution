@@ -8,7 +8,7 @@
 
   </div>
   <div class = "firstLower">
-    <h3 class="messageLow1" class="infoLarge"> “Blandit nisl ac cursus nascetur aenean, platea feugiat euismod fames metus maecenas, vehicula eu himenaeos nunc. Eleifend posuere morbi fusce facilisis tellus iaculis tempus hendrerit, fermentum maximus dis quam id auctor conubia”</h3>
+    <h3 id="messageLow" class="infoLarge"> “Blandit nisl ac cursus nascetur aenean, platea feugiat euismod fames metus maecenas, vehicula eu himenaeos nunc. Eleifend posuere morbi fusce facilisis tellus iaculis tempus hendrerit, fermentum maximus dis quam id auctor conubia”</h3>
     <h2 id ="authorLow" class="infoSmall"> Hein Tore Tønnesen</h2>
     <h2 id ="timeLow" class="infoSmall">22.09.21 - 13:43</h2>
 
@@ -16,7 +16,7 @@
 
   </div>
   <div class = "secoundLower">
-    <h3 class="messageLow2" class="infoLarge"> “Blandit nisl ac cursus nascetur aenean, platea feugiat euismod fames metus maecenas, vehicula eu himenaeos nunc. Eleifend posuere morbi fusce facilisis tellus iaculis tempus hendrerit, fermentum maximus dis quam id auctor conubia”</h3>
+    <h3 id="messageLow" class="infoLarge"> “Blandit nisl ac cursus nascetur aenean, platea feugiat euismod fames metus maecenas, vehicula eu himenaeos nunc. Eleifend posuere morbi fusce facilisis tellus iaculis tempus hendrerit, fermentum maximus dis quam id auctor conubia”</h3>
     <h2 id ="authorLow" class="infoSmall">Hein Tore Tønnesen</h2>
     <h2 id ="timeLow" class="infoSmall">{{ message.fields.author }}</h2>
 
@@ -185,11 +185,11 @@ export default {
     font-size: 52px;
   }
 
-  #messageLow1{
+  #messageLow{
     font-size: 25px;
 
   }
-  #messageLow2{
+  #messageLow{
     font-size: 25px;
 
 
@@ -220,4 +220,14 @@ export default {
   #timeLow{
     right: 0;
     margin-top: 15%;
-    
+    font-size: 15px;
+  }
+
+
+
+
+</style>
+
+
+
+
