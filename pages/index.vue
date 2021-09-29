@@ -2,21 +2,23 @@
   <section class="container">
   <div class= "mainUpper">
       <img class="logo" src="/appexLogoNy.png" alt="Logo">
-      <h1 id="messageMain"> “Blandit nisl ac cursus nascetur aenean, platea feugiat euismod fames metus maecenas, vehicula eu himenaeos nunc. Eleifend posuere morbi fusce facilisis tellus iaculis tempus hendrerit, fermentum maximus dis quam id auctor conubia”</h1>
-      <h2 id ="authorMain" class="infoSmall">- Hein Tore Tønnesen</h2>
+      <h1 id="messageMain" class="infoLarge"> “Blandit nisl ac cursus nascetur aenean, platea feugiat euismod fames metus maecenas, vehicula eu himenaeos nunc. Eleifend posuere morbi fusce facilisis tellus iaculis tempus hendrerit, fermentum maximus dis quam id auctor conubia”</h1>
+      <h2 id ="authorMain" class="infoSmall"> Hein Tore Tønnesen</h2>
       <h2 id ="timeMain" class="infoSmall">22.09.21 - 13:43</h2>
 
   </div>
   <div class = "firstLower">
-    <h3 class="messageLow1"> “Blandit nisl ac cursus nascetur aenean, platea feugiat euismod fames metus maecenas, vehicula eu himenaeos nunc. Eleifend posuere morbi fusce facilisis tellus iaculis tempus hendrerit, fermentum maximus dis quam id auctor conubia”</h3>
-    <h2 id ="authorLow1" class="infoSmall">- Hein Tore Tønnesen</h2>
-    <h2 id ="timeLow1" class="infoSmall">22.09.21 - 13:43</h2>
+    <h3 class="messageLow1" class="infoLarge"> “Blandit nisl ac cursus nascetur aenean, platea feugiat euismod fames metus maecenas, vehicula eu himenaeos nunc. Eleifend posuere morbi fusce facilisis tellus iaculis tempus hendrerit, fermentum maximus dis quam id auctor conubia”</h3>
+    <h2 id ="authorLow" class="infoSmall"> Hein Tore Tønnesen</h2>
+    <h2 id ="timeLow" class="infoSmall">22.09.21 - 13:43</h2>
 
 
 
   </div>
   <div class = "secoundLower">
-    <h1>secoundLower div</h1>
+    <h3 class="messageLow2" class="infoLarge"> “Blandit nisl ac cursus nascetur aenean, platea feugiat euismod fames metus maecenas, vehicula eu himenaeos nunc. Eleifend posuere morbi fusce facilisis tellus iaculis tempus hendrerit, fermentum maximus dis quam id auctor conubia”</h3>
+    <h2 id ="authorLow" class="infoSmall">Hein Tore Tønnesen</h2>
+    <h2 id ="timeLow" class="infoSmall">{{ message.fields.author }}</h2>
 
   </div>
     <div class="timeauthor">
@@ -36,18 +38,16 @@
   </section>
 </template>
 
-<style>
-  @import './pages/style.css';
-</style>
+
 
 <script>
-import Vue from 'vue';
+
 
 import {createClient} from '~/plugins/contentful.js'
 
 const client = createClient()
 
-setInterval(function() {
+/*setInterval(function() {
   client.getContentTypes()
   .then(([message]) => {
     console.log(message.items)
@@ -56,16 +56,14 @@ setInterval(function() {
     let time = `${d.slice(8, 10)}.${d.slice(5, 7)}.${d.slice(2, 4)} - ${d.slice(11, 13)}:${d.slice(14, 16)}`
 
     return {
-      message: message.items[0],
+      message: message.items,
       time: time
     } 
   })
   .catch(console.error);
-}, 5000);
+}, 5000);*/
 
-setInterval(function() {
-  this.reload();
-}, 5000)
+
 
 export default {
     name: "ScreenMessageApplication",
@@ -91,23 +89,6 @@ export default {
           } 
           
       }).catch(console.error)
-    },
-    methods: {
-      reload: function() {
-        client.getContentTypes()
-          .then(([message]) => {
-            console.log(message.items)
-            let tid = message.items[0].fields.date
-            var d = tid;
-            let time = `${d.slice(8, 10)}.${d.slice(5, 7)}.${d.slice(2, 4)} - ${d.slice(11, 13)}:${d.slice(14, 16)}`
-
-            return {
-              message: message.items[0],
-              time: time
-            } 
-        })
-        .catch(console.error);
-      }
     }
 }
 
@@ -164,6 +145,8 @@ export default {
     word-spacing: 5px;
     padding-bottom: 15px;
   }
+
+  /* Main div structure (Top, lowLeft and lowRight)*/
   .mainUpper{
     position: absolute;
     top: 0;
@@ -188,6 +171,9 @@ export default {
     height: 33%;
     border: 0.5px solid #ffffff;
   }
+
+
+
   .infoLarge{
     text-align: left;
     font-weight: 400;
@@ -198,8 +184,15 @@ export default {
   #messageMain{
     font-size: 52px;
   }
+
   #messageLow1{
     font-size: 25px;
+
+  }
+  #messageLow2{
+    font-size: 25px;
+
+
 
   }
   .infoSmall{
@@ -211,16 +204,20 @@ export default {
   }
   #authorMain{
     left: 0;
-    margin-top: 5vh;
+    margin-top: 5%;
     font-size: 45px;
   }
   #timeMain{
-    left: 0;
-    margin-top: 5vh;
+    right: 0;
+    margin-top: 5%;
     font-size: 45px;
   }
-</style>
-
-
-
-
+  #authorlow{
+    left: 0;
+    margin-top: 15%;
+    font-size: 15px;
+  }
+  #timeLow{
+    right: 0;
+    margin-top: 15%;
+    
