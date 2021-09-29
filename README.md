@@ -1,6 +1,6 @@
 # screenmessagesolution
 
-> Nuxt.js project
+> Nuxt.js & contentful project
 
 
 
