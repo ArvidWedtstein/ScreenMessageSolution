@@ -1,29 +1,32 @@
 <template>
   <section class="container">
-    <li v-for="item in messagecontent" :key="item">
-      {{ item }}
-    </li>
-     <div class= "mainUpper">
-      <img class="logo" src="/appexLogoNy.png" alt="Logo">
-      <h1 style="font-size: 3vw; margin-top: 5%;" class="infoLarge message"> “{{ `${messagecontent[0] != '' ? `${messagecontent[0]}` : ''}` }}”</h1>
-      <h2 style="font-size: 2.3vw" class="authorMain infoSmall">{{ `${author[0] != '' ? `${author[0]}` : ''}` }}</h2>
-      <h2 style="font-size: 2.3vw" class="time infoSmall">{{ `${time[0] != '' ? `${time[0]}` : ''}` }}</h2>
-
+    <img class="logo" src="/appexLogoNy.png" alt="Logo"/>
+    <div class="messages">
+  <div class="message" v-for="message in messages" :key="message">
+    <div class="message-container">
+      <h1> “{{message.fields.messagecontent}}”</h1>
+      <div class="message-meta">
+        <h2>{{message.fields.author}}</h2>
+        <h2>{{message.fields.date}}</h2>
+      </div>
+    </div>
   </div>
-    <div  style="right:0;" class = "Lower">
-      <h3 style="font-size: 1.5vw" class="infoLarge message"> “{{ `${messagecontent[1] != '' ? `${messagecontent[1]}` : ''}` }}”</h3>
-      <h2 style="font-size: 0.8vw" class="authorMain infoSmall">{{ `${author[1] != '' ? `${author[1]}` : ''}` }}</h2>
-      <h2 style="font-size: 0.8vw" class="time infoSmall">{{ `${time[1] != '' ? `${time[1]}` : ''}` }}</h2>
+  </div>
+     <!--<div class= "mainUpper" v-for="item in data" :key="item">
+      <h1 style="font-size: 3vw; margin-top: 5%;" class="infoLarge message"> “{{ data.message[0] }}”</h1>
+      <h2 style="font-size: 2.3vw" class="authorMain infoSmall">{{ data.author[0] }}</h2>
+      <h2 style="font-size: 2.3vw" class="time infoSmall">{{ data.time[0] }}</h2>
+
+  </div>-->
+    <!--<div  style="right:0;" class = "Lower">
+      <h1 style="font-size: 3vw; margin-top: 5%;" class="infoLarge message"> “{{ data.message[0] }}”</h1>
+      <h2 style="font-size: 2.3vw" class="authorMain infoSmall">{{ data.author[0] }}</h2>
+      <h2 style="font-size: 2.3vw" class="time infoSmall">{{ data.time[0] }}</h2>
 
 
 
-    </div>
-    <div style="left:0;" class = "Lower">
-      <h1 style="font-size: 1.5vw" class="infoLarge message"> “{{ `${messagecontent[2] != '' ? `${messagecontent[2]}` : ''}` }}”</h1>
-      <h2 style="font-size: 0.8vw" class="authorMain infoSmall">{{ `${author[2] != '' ? `${author[2]}` : ''}` }}</h2>
-      <h2 style="font-size: 0.8vw" class="time infoSmall">{{ `${time[2] != '' ? `${time[2]}` : ''}` }}</h2>
+    </div>-->
 
-    </div>
   </section>
 </template>
 
@@ -36,106 +39,66 @@ import {createClient} from '~/plugins/contentful.js'
 
 const client = createClient()
 
-/*setInterval(function() {
-  client.getContentTypes()
-  .then(([message]) => {
-          const author = [];
-          const messagecontent = []
-          const tid = [];
-          console.log(message.items)
-          for (let i = 0; i < message.items.length; i++) {
-            messagecontent.push(message.items[0].fields.messagecontent)
-          }
-          if (message.items[0].fields.messagecontent && message.items[0].fields.date && message.items[0].fields.author) {
-            messagecontent.push(message.items[0].fields.messagecontent)
-            author.push(message.items[0].fields.author)
-            var d = message.items[0].fields.date;
-            var t = `${d.slice(8, 10)}.${d.slice(5, 7)}.${d.slice(2, 4)} - ${d.slice(11, 13)}:${d.slice(14, 16)}`
-            tid.push(t)
-          } else {
-            messagecontent.push('d')
-            author.push('d')
-            tid.push('d')
-          }
-          if (message.items[1].fields.messagecontent) {
-            messagecontent.push(message.items[1].fields.messagecontent && message.items[1].fields.date && message.items[1].fields.author)
-            author.push(message.items[1].fields.author)
-            var d2 = message.items[1].fields.date;
-            var t2 = `${d2.slice(8, 10)}.${d2.slice(5, 7)}.${d2.slice(2, 4)} - ${d2.slice(11, 13)}:${d2.slice(14, 16)}`
-            tid.push(t2)
-          } else {
-            messagecontent.push('d')
-            author.push('d')
-            tid.push('d')
-          }
-          if (message.items[2].fields.messagecontent && message.items[2].fields.date && message.items[2].fields.author) {
-            messagecontent.push(message.items[2].fields.messagecontent)
-            author.push(message.items[2].fields.author)
-            var d3 = message.items[2].fields.date;
-            var t3 = `${d3.slice(8, 10)}.${d3.slice(5, 7)}.${d.slice(2, 4)} - ${d3.slice(11, 13)}:${d3.slice(14, 16)}`
-            tid.push(t3)
-          } else {
-            messagecontent.push('d')
-            author.push('d')
-            tid.push('d')
-          }
 
-          return {
-            author: author,
-            messagecontent: messagecontent,
-            time: tid
-          } 
-  })
-  .catch(console.error);
-}, 5000);*/
 
 
 
 export default {
     name: "ScreenMessageApplication",
     // `env` is available in the context object
-    
+    data() {
+      return {
+        messages: null
+      }
+    },
     asyncData ({env}) {
       return Promise.all([
 
         // fetch all message posts sorted by creation date
         client.getEntries({
           'content_type': env.CTF_POST_TYPE_ID,
-          order: '-sys.createdAt'
+          order: '-sys.updatedAt'
         }),
 
-        ]).then(([message]) => {
+        ]).then(([response]) => {
           
-          const author = [];
-          const messagecontent = []
-          const tid = [];
-
-          for (let i = 0; i < message.items.length; i++) {
-            messagecontent.push(message.items[i].fields.messagecontent)
-            author.push(message.items[i].fields.author);
-            var d = message.items[i].fields.date;
-            var t = `${d.slice(8, 10)}.${d.slice(5, 7)}.${d.slice(2, 4)} - ${d.slice(11, 13)}:${d.slice(14, 16)}`
-            tid.push(t)
-          }
-          /*console.log(tid)
-          console.log(author)
-          console.log(messagecontent)*/
           return {
-            author: author,
-            messagecontent: messagecontent,
-            time: tid
-          } 
-          
+            messages: response.items.splice(0,3)
+          }
       }).catch(console.error)
+    },
+    methods: {
+      refresh() {
+          setInterval(function() {
+            //location.reload();
+              client.getEntries({
+          'content_type': 'melding',
+          order: '-sys.updatedAt'
+        }).then(([response]) => {
+          console.log(response)
+          this.messages = response.items.splice(0,3)
+      }).catch(console.error)
+          },1000);
+      }
+    },
+    mounted() {
+      this.refresh();
     }
 }
 
 
 </script>
-<style>
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
   :root{
     --abbegscolor: #0073cf;
     --white: #ffffff;
+  }
+  body {
+    font-family: 'poppins';
+  }
+  * {
+    box-sizing: border-box;
   }
   .container {
     min-height: 100vh;
@@ -155,59 +118,57 @@ export default {
     width: 20vw;
   }
 
+.messages {
+  display: flex;
+  flex-wrap:wrap;
+  width: 100%;
 
+}
+.message-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
 
-  /* Main div structure (Top, lowLeft and lowRight)*/
-  .mainUpper{
+}
+.message {
+  
+  padding: 50px;
+  flex-grow: 1;
+  width: 50%;
+  position: relative;
+  height: 50vh;
+  border: 1px #ffffff solid;
+  h1 {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 67%;
-    border: 0.5px solid #ffffff;
-
+    top: 20%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    font-size: 48px;
   }
-  .Lower{
-    position: absolute;
-    bottom: 0;
-    width: 50vw;
-    height: 33%;
-    border: 0.5px solid #ffffff;
+  h2 {
+    font-size: 30px;
   }
-
-
-
-
-
-  .message{
-    font-size: 2.7vw;
-    padding: 4vw;
-    text-align: center !important;
-  }
-
-  .infoSmall{
+  &:first-child {
+    width: 100%;
     
-    /*width: 49%;*/
-    text-align: center;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.85);
-  }
-  .authorMain{
-    left: 0;
-    bottom: 0 !important;
-    padding: 1vw;
-    position: absolute;
-  }
-  .time{
-    right: 0;
-    padding: 1vw;
-    margin-top: 10%;
-    bottom: 0;
-    position: absolute;
+    h1 {
+      font-size: 40px;
+      margin-top: 150px;
+      
+    }
   }
 
+}
 
-
+.message-meta {
+      position: absolute;
+      bottom: 0;
+      transform: translateX(-50%);
+      left: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+}
 
 
 </style>
