@@ -32,5 +32,8 @@ npm-debug.log
 # Nuxt build
 .nuxt
 
+# vscode
+.vscode
+
 # Nuxt generate
 dist
