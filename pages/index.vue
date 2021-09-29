@@ -2,30 +2,16 @@
   <section class="container">
     <img class="logo" src="/appexLogoNy.png" alt="Logo"/>
     <div class="messages">
-  <div class="message" v-for="message in messages" :key="message">
+  <div class="message" v-for="message in messages" :key="message.sys.id">
     <div class="message-container">
-      <h1> “{{message.fields.messagecontent}}”</h1>
+      <h1> “{{ message.fields.messagecontent }}”</h1>
       <div class="message-meta">
-        <h2>{{message.fields.author}}</h2>
-        <h2>{{message.fields.date}}</h2>
+        <h2>{{ message.fields.author }}</h2>
+        <h2>{{ message.fields.date }}</h2>
       </div>
     </div>
   </div>
   </div>
-     <!--<div class= "mainUpper" v-for="item in data" :key="item">
-      <h1 style="font-size: 3vw; margin-top: 5%;" class="infoLarge message"> “{{ data.message[0] }}”</h1>
-      <h2 style="font-size: 2.3vw" class="authorMain infoSmall">{{ data.author[0] }}</h2>
-      <h2 style="font-size: 2.3vw" class="time infoSmall">{{ data.time[0] }}</h2>
-
-  </div>-->
-    <!--<div  style="right:0;" class = "Lower">
-      <h1 style="font-size: 3vw; margin-top: 5%;" class="infoLarge message"> “{{ data.message[0] }}”</h1>
-      <h2 style="font-size: 2.3vw" class="authorMain infoSmall">{{ data.author[0] }}</h2>
-      <h2 style="font-size: 2.3vw" class="time infoSmall">{{ data.time[0] }}</h2>
-
-
-
-    </div>-->
 
   </section>
 </template>
@@ -33,54 +19,47 @@
 
 
 <script>
-
-
 import {createClient} from '~/plugins/contentful.js'
-
 const client = createClient()
-
-
-
-
 
 export default {
     name: "ScreenMessageApplication",
-    // `env` is available in the context object
     data() {
       return {
         messages: null
       }
     },
+
     asyncData ({env}) {
       return Promise.all([
-
-        // fetch all message posts sorted by creation date
         client.getEntries({
           'content_type': env.CTF_POST_TYPE_ID,
           order: '-sys.updatedAt'
         }),
 
         ]).then(([response]) => {
-          
           return {
             messages: response.items.splice(0,3)
           }
       }).catch(console.error)
     },
+
     methods: {
+
+      // auto update with new data regularly
       refresh() {
-          setInterval(function() {
-            //location.reload();
-              client.getEntries({
-          'content_type': 'melding',
-          order: '-sys.updatedAt'
-        }).then(([response]) => {
-          console.log(response)
-          this.messages = response.items.splice(0,3)
-      }).catch(console.error)
-          },1000);
+        setInterval(function() {
+          client.getEntries({
+            'content_type': 'melding',
+            order: '-sys.updatedAt'
+          }).then((response) => {
+            console.log(response)
+            this.messages = response.items.splice(0,3)
+          }).catch(console.error)
+        },1000);
       }
     },
+
     mounted() {
       this.refresh();
     }
@@ -131,7 +110,7 @@ export default {
 
 }
 .message {
-  
+
   padding: 50px;
   flex-grow: 1;
   width: 50%;
@@ -150,24 +129,24 @@ export default {
   }
   &:first-child {
     width: 100%;
-    
+
     h1 {
       font-size: 40px;
       margin-top: 150px;
-      
+
     }
   }
 
 }
 
 .message-meta {
-      position: absolute;
-      bottom: 0;
-      transform: translateX(-50%);
-      left: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  left: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 
