@@ -1,0 +1,39 @@
+:root{
+  --abbegscolor: #0073cf;
+  --white: #ffffff;
+}
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--abbegscolor);
+  width: 100vw;
+  height: 100vh;
+  color: rgb(255, 255, 255, 0.8);
+}
+.timeauthor {
+  position: absolute;
+  top: 1vw;
+  left: 1vw;
+}
+.logo {
+  position: absolute;
+  top: 1vw;
+  left: 40vw;
+  width: 20vw;
+  
+}
+.lblDateView{
+  
+  font-weight: 400;
+  }
+
+.title {
+  font-family: 'Roboto';
+  text-transform: uppercase;
+  display: block;
+  font-weight: 500;
+  font-size: 100px;
+  letter-s
