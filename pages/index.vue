@@ -2,13 +2,17 @@
   <section class="container">
   <div class= "mainUpper">
       <img class="logo" src="/appexLogoNy.png" alt="Logo">
-      <h1 class="messageMain"> “Blandit nisl ac cursus nascetur aenean, platea feugiat euismod fames metus maecenas, vehicula eu himenaeos nunc. Eleifend posuere morbi fusce facilisis tellus iaculis tempus hendrerit, fermentum maximus dis quam id auctor conubia”</h1>
+      <h1 id="messageMain"> “Blandit nisl ac cursus nascetur aenean, platea feugiat euismod fames metus maecenas, vehicula eu himenaeos nunc. Eleifend posuere morbi fusce facilisis tellus iaculis tempus hendrerit, fermentum maximus dis quam id auctor conubia”</h1>
       <h2 id ="authorMain" class="infoSmall">- Hein Tore Tønnesen</h2>
       <h2 id ="timeMain" class="infoSmall">22.09.21 - 13:43</h2>
 
   </div>
   <div class = "firstLower">
-    <h1>firstLower div</h1>
+    <h3 class="messageLow1"> “Blandit nisl ac cursus nascetur aenean, platea feugiat euismod fames metus maecenas, vehicula eu himenaeos nunc. Eleifend posuere morbi fusce facilisis tellus iaculis tempus hendrerit, fermentum maximus dis quam id auctor conubia”</h3>
+    <h2 id ="authorLow1" class="infoSmall">- Hein Tore Tønnesen</h2>
+    <h2 id ="timeLow1" class="infoSmall">22.09.21 - 13:43</h2>
+
+
 
   </div>
   <div class = "secoundLower">
@@ -43,13 +47,26 @@ import {createClient} from '~/plugins/contentful.js'
 
 const client = createClient()
 
-client.getContentTypes()
-.then((response) => {
-  console.log(response.items)
-})
-.catch(console.error);
+setInterval(function() {
+  client.getContentTypes()
+  .then(([message]) => {
+    console.log(message.items)
+    let tid = message.items[0].fields.date
+    var d = tid;
+    let time = `${d.slice(8, 10)}.${d.slice(5, 7)}.${d.slice(2, 4)} - ${d.slice(11, 13)}:${d.slice(14, 16)}`
 
-  
+    return {
+      message: message.items[0],
+      time: time
+    } 
+  })
+  .catch(console.error);
+}, 5000);
+
+setInterval(function() {
+  this.reload();
+}, 5000)
+
 export default {
     name: "ScreenMessageApplication",
     // `env` is available in the context object
@@ -74,6 +91,23 @@ export default {
           } 
           
       }).catch(console.error)
+    },
+    methods: {
+      reload: function() {
+        client.getContentTypes()
+          .then(([message]) => {
+            console.log(message.items)
+            let tid = message.items[0].fields.date
+            var d = tid;
+            let time = `${d.slice(8, 10)}.${d.slice(5, 7)}.${d.slice(2, 4)} - ${d.slice(11, 13)}:${d.slice(14, 16)}`
+
+            return {
+              message: message.items[0],
+              time: time
+            } 
+        })
+        .catch(console.error);
+      }
     }
 }
 
@@ -154,26 +188,39 @@ export default {
     height: 33%;
     border: 0.5px solid #ffffff;
   }
-  .messageMain{
+  .infoLarge{
     text-align: left;
-    font-size: 52px;
     font-weight: 400;
-    width: 70vw;
-    margin-top: 10vw;
-    margin-left: 15vw;
+    width: 70%;
+    margin-top: 10%;
+    margin-left: 15%;
+  }
+  #messageMain{
+    font-size: 52px;
+  }
+  #messageLow1{
+    font-size: 25px;
+
   }
   .infoSmall{
     position: absolute;
-    width: 49vw;
+    width: 49%;
     text-align: center;
-    margin-top: 5vh;
-    font-size: 45px;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.85);
   }
   #authorMain{
-    
     left: 0;
+    margin-top: 5vh;
+    font-size: 45px;
   }
   #timeMain{
-    
+    left: 0;
+    margin-top: 5vh;
+    font-size: 45px;
+  }
+</style>
+
+
+
+

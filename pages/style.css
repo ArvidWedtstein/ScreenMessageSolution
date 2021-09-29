@@ -36,4 +36,65 @@
   display: block;
   font-weight: 500;
   font-size: 100px;
-  letter-s
+  letter-spacing: 1px;
+}
+.author {
+  vertical-align: top;
+  text-align: left;
+  font-weight: 10;
+}
+.subtitle {
+  font-weight: 300;
+  font-size: 42px;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+.mainUpper{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 66%;
+  border: 0.5px solid #ffffff;
+}
+.firstLower{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50vw;
+  height: 33%;
+  border: 0.5px solid #ffffff;
+}
+.secoundLower{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50vw;
+  height: 33%;
+  border: 0.5px solid #ffffff;
+}
+.infoSampleText{
+  text-align: left;
+  font-size: 52px;
+  font-weight: 400;
+  width: 70vw;
+  margin-top: 10vw;
+  margin-left: 15vw;
+}
+.infoSmall{
+  position: absolute;
+  width: 49vw;
+  text-align: center;
+  margin-top: 5vh;
+  font-size: 45px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+}
+#authorMain{
+  
+  left: 0;
+}
+#timeMain{
+  
+  left: 0;
+}
