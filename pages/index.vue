@@ -2,17 +2,16 @@
   <section class="container">
     <img class="logo" src="/appexLogoNy.png" alt="Logo"/>
     <div class="messages">
-  <div class="message" v-for="message in messages" :key="message.sys.id">
-    <div class="message-container">
-      <h1> “{{ message.fields.messagecontent }}”</h1>
-      <div class="message-meta">
-        <h2>{{ message.fields.author }}</h2>
-        <h2>{{ message.fields.date }}</h2>
+      <div class="message" v-for="message in messages" :key="message.sys.id">
+        <div class="message-container">
+          <h1> “{{ message.fields.messagecontent }}”</h1>
+          <div class="message-meta">
+            <h2>{{ message.fields.author }}</h2>
+            <h2>{{ message.fields.date }}</h2>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  </div>
-
   </section>
 </template>
 
