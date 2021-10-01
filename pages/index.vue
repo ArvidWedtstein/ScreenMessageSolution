@@ -18,6 +18,7 @@
 
 
 <script>
+import moment from 'moment';
 import {createClient} from '~/plugins/contentful.js'
 const client = createClient()
 
