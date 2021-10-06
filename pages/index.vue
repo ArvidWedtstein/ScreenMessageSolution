@@ -192,6 +192,7 @@ body {
       font-size: 3.8vh;
       top: 52%;
       width: 100%;
+      padding-top: 80px;
     }
   }
 
