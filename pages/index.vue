@@ -169,7 +169,7 @@ body {
   padding-top: 0;
   h1 {
     position: absolute;
-    top: 40%;
+    top: 30%;
     transform: translate(-50%, -50%);
     left: 50%;
     font-size: 25px;
