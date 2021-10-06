@@ -29,7 +29,7 @@ export default {
     name: "ScreenMessageApplication",
     data() {
       return {
-        messages: [],
+        messages: null,
         dark: false
       }
     },
@@ -71,7 +71,7 @@ export default {
           }).catch(console.error)
           //location.reload();
           this.$nuxt.refresh();
-        }, 60 * 1000);
+        }, 15 * 1000);
       },
     },
 
@@ -114,6 +114,14 @@ body {
   background: var(--abbegsdark);
   color: var(--light);
 }
+@keyframes logo {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
 .authormessage {
   text-transform: capitalize;
 }
@@ -129,7 +137,6 @@ body {
   display: flex;
   flex-wrap:wrap;
   width: 100%;
-
 }
 .message-container {
   position: relative;
