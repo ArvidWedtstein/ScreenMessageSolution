@@ -1,5 +1,6 @@
 
 const config = require('./.contentful.json')
+
 module.exports = {
   env: {
     CTF_SPACE_ID: config.CTF_SPACE_ID,
@@ -7,6 +8,8 @@ module.exports = {
     CTF_PERSON_ID: config.CTF_PERSON_ID,
     CTF_POST_TYPE_ID: config.CTF_POST_TYPE_ID
   },
+
+  mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -25,6 +28,12 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+  target: 'static',
+  ssr: false,
+
+  generate: {
+    fallback: true
+  },
   /*
   ** Build configuration
   */
