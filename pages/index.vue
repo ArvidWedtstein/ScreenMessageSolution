@@ -146,14 +146,44 @@ body {
   left: 50vw;
   height: 150px;
   transform: translateX(-50%);
-  animation: logo 5s linear infinite;
+  animation: logo 2s linear infinite;
+  text-shadow: 
+    10px 0 50px 20px violet,
+    10px 0 50px 40px indigo,
+    10px 0 50px 60px blue,
+    10px 0 50px 80px green,
+    10px 0 50px 100px yellow,
+    10px 0 50px 120px orange,
+    10px 0 50px 140px red;
+  transition: filter 2s;
 }
 @keyframes logo {
   0% {
-    filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg) drop-shadow(0px 0px 4px #ef5350);
+  }
+  10% {
+    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #f48fb1);
+  }
+  20% {
+    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #7e57c2);
+  }
+  30% {
+    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #2196f3);
+  }
+  40% {
+    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #26c6da);
+  }
+  50% {
+    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #43a047);
+  }
+  60% {
+    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #eeff41);
+  }
+  70% {
+    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #f9a825);
   }
   100% {
-    filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg) drop-shadow(0px 0px 4px #ff5722);
   }
 }
 .messages {
@@ -220,6 +250,7 @@ body {
   z-index: -1;
   * {
     opacity: 0.8;
+
   }
 }
 </style>
