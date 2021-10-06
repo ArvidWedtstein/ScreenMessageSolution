@@ -1,12 +1,13 @@
 <template>
   <section v-bind:class="{ dark: dark }" class="container">
-    <img class="logo" src="/appexLogoNy.png" alt="Logo"/>
+    <img v-if="dark" class="logo" src="/appexLogoNy.png" alt="Logo"/>
+    <img v-else class="logo" src="/appexLogoNyDark.png" alt="Logo"/>
     <div class="messages">
       <div class="message" v-for="message in messages" v-bind:key="message.sys.id">
         <div class="message-container">
-          <h1> “{{ message.fields.messagecontent }}”</h1>
+          <h1> “{{ message.fields.messagecontent }}"</h1>
           <div class="message-meta">
-            <h2>{{ author(message.fields.author) }}</h2>
+            <h2 class="authormessage">{{ message.fields.author }}</h2>
             <h2>{{ timeFormat(message.fields.date) }}</h2>
           </div>
         </div>
@@ -51,9 +52,6 @@ export default {
       timeFormat(time) {
         return moment(String(time)).format("DD.MM.YYYY - hh:mm")
       },
-      author(author) {
-        return author.charAt(0).toUpperCase();
-      },
       // auto update with new data regularly
       refresh() {
         setInterval(() => {
@@ -73,7 +71,7 @@ export default {
           }).catch(console.error)
           //location.reload();
           this.$nuxt.refresh();
-        }, 15 * 1000);
+        }, 60 * 1000);
       },
     },
 
@@ -86,10 +84,13 @@ export default {
 
 </script>
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 :root{
   --abbegscolor: #0073cf;
   --white: #ffffff;
+  --abbegsdark: #221E20;
+  --light: #D6D2CE;
+  --green: #DDE78B;
 }
 body {
   font-family: 'poppins';
@@ -104,13 +105,17 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: var(--abbegscolor);
+  background-color: var(--light);
   width: 100vw;
   height: 100vh;
-  color: rgb(255, 255, 255, 0.8);
+  color: var(--abbegsdark);
 }
 .dark {
-  background: #000000;
+  background: var(--abbegsdark);
+  color: var(--light);
+}
+.authormessage {
+  text-transform: capitalize;
 }
 .logo {
   position: absolute;
@@ -134,25 +139,23 @@ body {
 }
 .message {
   display: flex;
-  padding: 30px;
+  padding: 80px;
   flex-grow: 1;
   width: 50%;
   height: 40vh;
   position: relative;
-  border: 1px #ffffff solid;
   h1 {
     position: absolute;
-    font-style: italic; 
-    top: 50%;
+    top: 40%;
     transform: translate(-50%, -50%);
     left: 50%;
-    font-size: 2.4vh;
+    font-size: 2.2vh;
     width: 100%;
-
+    font-weight: 500;
   }
   h2 {
     font-size: 20px;
-    font-weight: 50;
+    font-weight: 400;
   }
   &:first-child {
     width: 100%;
