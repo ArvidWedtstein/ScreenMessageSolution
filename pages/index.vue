@@ -6,7 +6,7 @@
         <div class="message-container">
           <h1> “{{ message.fields.messagecontent }}”</h1>
           <div class="message-meta">
-            <h2>{{ message.fields.author }}</h2>
+            <h2>{{ author(message.fields.author) }}</h2>
             <h2>{{ timeFormat(message.fields.date) }}</h2>
           </div>
         </div>
@@ -50,6 +50,9 @@ export default {
     methods: {
       timeFormat(time) {
         return moment(String(time)).format("DD.MM.YYYY - hh:mm")
+      },
+      author(author) {
+        return author.charAt(0).toUpperCase();
       },
       // auto update with new data regularly
       refresh() {
