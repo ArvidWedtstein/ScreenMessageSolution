@@ -142,7 +142,7 @@ body {
 }
 .logo {
   position: absolute;
-  top: 0vh;
+  top: 30px;
   left: 50vw;
   height: 100px;
   transform: translateX(-50%);
