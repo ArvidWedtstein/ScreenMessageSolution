@@ -82,7 +82,7 @@ export default {
   }
   body {
     font-family: 'poppins';
-    overflow-x: hidden;
+    overflow: hidden !important;
   }
   * {
     box-sizing: border-box;
