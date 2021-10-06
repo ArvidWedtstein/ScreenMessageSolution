@@ -144,7 +144,7 @@ body {
   position: absolute;
   top: 0vh;
   left: 50vw;
-  height: 130px;
+  height: 100px;
   transform: translateX(-50%);
 }
 
