@@ -35,7 +35,8 @@ npm-debug.log
 # vscode
 .vscode
 
-
+# Nuxt generate
+dist
 
 # Contentful json access tokens
 .contentful.json
