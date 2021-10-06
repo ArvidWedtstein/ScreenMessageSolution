@@ -58,23 +58,16 @@ export default {
       // auto update with new data regularly
       refresh() {
         setInterval(() => {
+          this.$nuxt.refresh();
            const time = new Date();
           if (time.getHours() >= 16) {
             this.dark = true;
           } else {
             this.dark = false;
           }
-          client.getEntries({
-            'content_type': process.env.CTF_POST_TYPE_ID,
-            order: '-sys.updatedAt'
-          }).then((response) => {
-            console.log(response.items.splice(0,3))
-            this.messages = response.items.splice(0,3)
-
-          }).catch(console.error)
           //location.reload();
-          this.$nuxt.refresh();
-        }, 15 * 1000);
+          
+        }, 60 * 1000);
       },
     },
 
@@ -84,9 +77,9 @@ export default {
 
       let config = {
         container: '.scene',
-        type: 'image',
-        image: '/sean-oulashin-KMn4VEeEPR8-unsplash.jpg',
-        video: '',
+        type: 'video',
+        image: '',
+        video: '/waves.mp4',
         // resolutionX: 400,
         // resolutionY: 400,
         // background: '#000',
@@ -139,15 +132,11 @@ body {
     background: var(--abbegsdark);
     color: var(--light);
   }
-}
-@keyframes logo {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(0deg);
+  .message {
+    color: var(--light);
   }
 }
+
 .authormessage {
   text-transform: capitalize;
 }
@@ -157,8 +146,16 @@ body {
   left: 50vw;
   height: 150px;
   transform: translateX(-50%);
+  animation: logo 5s linear infinite;
 }
-
+@keyframes logo {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
 .messages {
   display: flex;
   flex-wrap:wrap;
