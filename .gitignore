@@ -38,4 +38,6 @@ npm-debug.log
 # Nuxt generate
 dist
 
+.contentful.json
+
 

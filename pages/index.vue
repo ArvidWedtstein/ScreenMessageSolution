@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section v-bind:class="{ dark: dark }" class="container">
     <img class="logo" src="/appexLogoNy.png" alt="Logo"/>
     <div class="messages">
       <div class="message" v-for="message in messages" v-bind:key="message.sys.id">
@@ -26,7 +26,8 @@ export default {
     name: "ScreenMessageApplication",
     data() {
       return {
-        messages: []
+        messages: [],
+        dark: false
       }
     },
 
@@ -50,9 +51,15 @@ export default {
       },
       // auto update with new data regularly
       refresh() {
-        setInterval(function() {
+        setInterval(() => {
+           const time = new Date();
+          if (time.getHours() >= 16) {
+            this.dark = true;
+          } else {
+            this.dark = false;
+          }
           client.getEntries({
-            'content_type': process.env.CTF_POST_TYPE_ID,
+            'content_type': 'melding',
             order: '-sys.updatedAt'
           }).then((response) => {
             console.log(response.items.splice(0,3))
@@ -63,9 +70,6 @@ export default {
           this.$nuxt.refresh();
         }, 15 * 1000);
       },
-      darkmode() {
-        const time = new Date();
-      }
     },
 
     mounted() {
@@ -100,11 +104,15 @@ body {
   height: 100vh;
   color: rgb(255, 255, 255, 0.8);
 }
+.dark {
+  background: #000000;
+}
 .logo {
   position: absolute;
   top: 0vh;
-  left: 40vw;
-  width: 20vw;
+  left: 50vw;
+  height: 150px;
+  transform: translateX(-50%);
 }
 
 .messages {
