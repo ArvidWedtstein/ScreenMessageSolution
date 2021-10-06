@@ -60,7 +60,8 @@ export default {
           
           }).catch(console.error)
           //location.reload();
-        }, 60 * 1000);
+          this.$nuxt.refresh();
+        }, 15 * 1000);
       }
     },
 
