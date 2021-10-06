@@ -39,7 +39,7 @@ export default {
 
         ]).then(([response]) => {
           return {
-            messages: response.items.splice(0,3)
+            messages: response.items.splice(0,2)
           }
       }).catch(console.error)
     },
@@ -55,18 +55,22 @@ export default {
             'content_type': 'melding',
             order: '-sys.updatedAt'
           }).then((response) => {
-            console.log(response)
+            console.log(response.items.splice(0,3))
             this.messages = response.items.splice(0,3)
           }).catch(console.error)
-        },1000);
+          //location.reload();
+        },60 * 1000);
       }
     },
 
     mounted() {
       this.refresh();
-      this.timeFormat();
+    },
+    beforeMount() { 
+      this.refresh();
     }
 }
+
 
 
 </script>
@@ -114,7 +118,7 @@ export default {
 }
 .message {
 
-  padding: 50px;
+  padding: 30px;
   flex-grow: 1;
   width: 50%;
   position: relative;
@@ -122,20 +126,20 @@ export default {
   border: 1px #ffffff solid;
   h1 {
     position: absolute;
-    top: 20%;
+    top: 15%;
     transform: translate(-50%, -50%);
     left: 50%;
-    font-size: 48px;
+    font-size: 25px;
   }
   h2 {
-    font-size: 30px;
+    font-size: 20px;
   }
   &:first-child {
     width: 100%;
 
     h1 {
-      font-size: 40px;
-      margin-top: 150px;
+      font-size: 35px;
+      margin-top: 80px;
 
     }
   }
@@ -144,7 +148,7 @@ export default {
 
 .message-meta {
   position: absolute;
-  bottom: 0;
+  bottom: -8%;
   transform: translateX(-50%);
   left: 50%;
   width: 100%;
