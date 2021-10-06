@@ -19,7 +19,7 @@
     "contentful": "^9.0.0",
     "contentful-cli": "^1.9.20",
     "cross-env": "^7.0.3",
-    "dotenv": "^10.0.0",
+    "fs": "0.0.1-security",
     "nuxt": "^2.15.8",
     "reading-time": "^1.5.0",
     "sass": "^1.42.1",
