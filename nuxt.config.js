@@ -1,6 +1,6 @@
 
 
-const config = require('.contentful.json')
+const config = require('./.contentful.json')
 module.exports = {
   env: {
     CTF_SPACE_ID: config.CTF_SPACE_ID,
