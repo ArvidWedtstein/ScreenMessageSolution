@@ -2,7 +2,7 @@
   <section class="container">
     <img class="logo" src="/appexLogoNy.png" alt="Logo"/>
     <div class="messages">
-      <div class="message" v-for="message in messages" :key="message.sys.id">
+      <div class="message" v-for="message in messages" v-bind:key="message.sys.id">
         <div class="message-container">
           <h1> “{{ message.fields.messagecontent }}”</h1>
           <div class="message-meta">
@@ -26,7 +26,7 @@ export default {
     name: "ScreenMessageApplication",
     data() {
       return {
-        messages: null
+        messages: []
       }
     },
 
@@ -39,7 +39,7 @@ export default {
 
         ]).then(([response]) => {
           return {
-            messages: response.items.splice(0,2)
+            messages: response.items.splice(0,3)
           }
       }).catch(console.error)
     },
@@ -57,16 +57,14 @@ export default {
           }).then((response) => {
             console.log(response.items.splice(0,3))
             this.messages = response.items.splice(0,3)
+          
           }).catch(console.error)
           //location.reload();
-        },60 * 1000);
+        }, 60 * 1000);
       }
     },
 
     mounted() {
-      this.refresh();
-    },
-    beforeMount() { 
       this.refresh();
     }
 }
@@ -149,7 +147,7 @@ export default {
 
 .message-meta {
   position: absolute;
-  bottom: -8%;
+  bottom: -4%;
   transform: translateX(-50%);
   left: 50%;
   width: 100%;
