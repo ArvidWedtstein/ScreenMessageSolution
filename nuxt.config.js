@@ -34,6 +34,9 @@ module.exports = {
   /*
   ** Build configuration
   */
+  buildModules: [
+    '@nuxtjs/dotenv'
+  ],
   build: {
     /*
     ** Run ESLint on save
@@ -49,8 +52,8 @@ module.exports = {
       }
       config.node = {
         fs: 'empty'
-      } 
-      
+      }
+
     }
   }
 }
