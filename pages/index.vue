@@ -30,10 +30,10 @@ export default {
       }
     },
 
-    asyncData () {
+    asyncData ({env}) {
       return Promise.all([
         client.getEntries({
-          'content_type': process.env.CTF_POST_TYPE_ID,
+          'content_type': env.CTF_POST_TYPE_ID,
           order: '-sys.updatedAt'
         }),
 
