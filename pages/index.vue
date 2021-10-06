@@ -13,6 +13,8 @@
         </div>
       </div>
     </div>
+
+    <div class="scene"></div>
   </section>
 </template>
 
@@ -20,6 +22,7 @@
 
 <script>
 import moment from 'moment';
+import appexii from '~/assets/appexii'
 import {createClient} from '~/plugins/contentful.js'
 const client = createClient()
 require('dotenv').config();
@@ -67,7 +70,7 @@ export default {
           }).then((response) => {
             console.log(response.items.splice(0,3))
             this.messages = response.items.splice(0,3)
-          
+
           }).catch(console.error)
           //location.reload();
           this.$nuxt.refresh();
@@ -77,6 +80,25 @@ export default {
 
     mounted() {
       this.refresh();
+
+
+      let config = {
+        container: '.scene',
+        type: 'image',
+        image: '/sean-oulashin-KMn4VEeEPR8-unsplash.jpg',
+        video: '',
+        // resolutionX: 400,
+        // resolutionY: 400,
+        // background: '#000',
+        // foreground: '#FFF',
+        invert: false,
+        color: false
+      }
+
+      appexii(
+        config
+      )
+
     }
 }
 
@@ -105,14 +127,18 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: var(--light);
   width: 100vw;
   height: 100vh;
-  color: var(--abbegsdark);
+  .scene {
+    background-color: var(--light);
+    color: var(--abbegsdark);
+  }
 }
 .dark {
-  background: var(--abbegsdark);
-  color: var(--light);
+  .scene {
+    background: var(--abbegsdark);
+    color: var(--light);
+  }
 }
 .authormessage {
   text-transform: capitalize;
@@ -182,6 +208,16 @@ body {
 }
 
 
+
+.scene {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: -1;
+  * {
+    opacity: 0.8;
+  }
+}
 </style>
 
 
