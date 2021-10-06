@@ -14,7 +14,7 @@ Laget av Aleksander, Arvid (med hjelp av Harald, David og Victor)
 
 ## How to run local
 
-<h5>to run local use console command `npm run dev in console` or `yarn dev`</h5>
+To run local use console command `npm run dev in console` or `yarn dev`
 
 
 <p align="left>Webaddress: https://screenmessageapplication.netlify.app</p>
