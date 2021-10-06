@@ -146,16 +146,16 @@ body {
   left: 50vw;
   height: 150px;
   transform: translateX(-50%);
-  animation: logo 2s linear infinite;
-  text-shadow: 
-    10px 0 50px 20px violet,
-    10px 0 50px 40px indigo,
-    10px 0 50px 60px blue,
-    10px 0 50px 80px green,
-    10px 0 50px 100px yellow,
-    10px 0 50px 120px orange,
-    10px 0 50px 140px red;
-  transition: filter 2s;
+  
+
+}
+.logo:hover {
+    -webkit-transition: text-shadow 0.2s linear;
+    -moz-transition: text-shadow 0.2s linear;
+    -ms-transition: text-shadow 0.2s linear;
+    -o-transition: text-shadow 0.2s linear;
+    transition: text-shadow 0.2s linear;
+    animation: logo 2s linear infinite;
 }
 @keyframes logo {
   0% {
@@ -216,6 +216,7 @@ body {
   h2 {
     font-size: 20px;
     font-weight: 400;
+    text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
   }
   &:first-child {
     width: 100%;
