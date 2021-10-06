@@ -18,5 +18,6 @@ To run local use console command `npm run dev in console` or `yarn dev`
 
 ## How to deploy (Netliy)
 
-To deploy you must write `npm run generate` or `yarn generate`. Then you can connect the repository to netlify. Then you can press deploy
+To deploy you must write `npm run generate` or `yarn generate`. 
+Then you can connect the repository to netlify. Then you can press deploy
 <p align="left>Webaddress: https://screenmessageapplication.netlify.app</p>
