@@ -21,7 +21,6 @@
 import moment from 'moment';
 import {createClient} from '~/plugins/contentful.js'
 const client = createClient()
-require('dotenv')
 
 export default {
     name: "ScreenMessageApplication",
@@ -63,6 +62,9 @@ export default {
           //location.reload();
           this.$nuxt.refresh();
         }, 15 * 1000);
+      },
+      darkmode() {
+        const time = new Date();
       }
     },
 
