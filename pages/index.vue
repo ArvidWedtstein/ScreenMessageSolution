@@ -168,7 +168,7 @@ body {
   width: 50%;
   height: 40vh;
   position: relative;
-
+  padding-top: 0;
   h1 {
     position: absolute;
     top: 40%;
