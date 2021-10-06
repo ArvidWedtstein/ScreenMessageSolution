@@ -14,7 +14,7 @@ Laget av Aleksander, Arvid (med hjelp av Harald, David og Victor)
 
 ## How to run local
 
-To run local use console command `npm run dev in console` or `yarn dev`
+To run local use console command `npm run dev` in console or `yarn dev`
 
 ## How to deploy (Netliy)
 

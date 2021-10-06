@@ -5,7 +5,7 @@
     <div class="messages">
       <div class="message" v-for="message in messages" v-bind:key="message.sys.id">
         <div class="message-container">
-          <h1> “{{ message.fields.messagecontent }}"</h1>
+          <h1> “{{ message.fields.messagecontent }}“</h1>
           <div class="message-meta">
             <h2 class="authormessage">{{ message.fields.author }}</h2>
             <h2>{{ timeFormat(message.fields.date) }}</h2>
@@ -79,7 +79,7 @@ export default {
         container: '.scene',
         type: 'video',
         image: '',
-        video: '/waves.mp4',
+        video: '/blob.mp4',
         // resolutionX: 400,
         // resolutionY: 400,
         // background: '#000',
@@ -146,46 +146,11 @@ body {
   left: 50vw;
   height: 150px;
   transform: translateX(-50%);
-  
+
 
 }
-.logo:hover {
-    -webkit-transition: text-shadow 0.2s linear;
-    -moz-transition: text-shadow 0.2s linear;
-    -ms-transition: text-shadow 0.2s linear;
-    -o-transition: text-shadow 0.2s linear;
-    transition: text-shadow 0.2s linear;
-    animation: logo 2s linear infinite;
-}
-@keyframes logo {
-  0% {
-    filter: hue-rotate(0deg) drop-shadow(0px 0px 4px #ef5350);
-  }
-  10% {
-    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #f48fb1);
-  }
-  20% {
-    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #7e57c2);
-  }
-  30% {
-    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #2196f3);
-  }
-  40% {
-    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #26c6da);
-  }
-  50% {
-    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #43a047);
-  }
-  60% {
-    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #eeff41);
-  }
-  70% {
-    filter: hue-rotate(180deg) drop-shadow(0px 0px 4px #f9a825);
-  }
-  100% {
-    filter: hue-rotate(360deg) drop-shadow(0px 0px 4px #ff5722);
-  }
-}
+
+
 .messages {
   display: flex;
   flex-wrap:wrap;
@@ -195,7 +160,6 @@ body {
   position: relative;
   height: 100%;
   width: 100%;
-
 }
 .message {
   display: flex;
@@ -204,6 +168,7 @@ body {
   width: 50%;
   height: 40vh;
   position: relative;
+
   h1 {
     position: absolute;
     top: 40%;
@@ -216,7 +181,7 @@ body {
   h2 {
     font-size: 20px;
     font-weight: 400;
-    text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+    
   }
   &:first-child {
     width: 100%;
@@ -251,7 +216,6 @@ body {
   z-index: -1;
   * {
     opacity: 0.8;
-
   }
 }
 </style>
