@@ -10,6 +10,12 @@ module.exports = {
   },
 
   mode: 'universal',
+  generate: {
+    routes: [
+      '/pages/index.vue'
+    ]
+  },
+
   /*
   ** Headers of the page
   */
@@ -30,10 +36,6 @@ module.exports = {
   loading: { color: '#3B8070' },
   target: 'static',
   ssr: false,
-
-  generate: {
-    fallback: true
-  },
   /*
   ** Build configuration
   */
