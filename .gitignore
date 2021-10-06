@@ -38,7 +38,4 @@ npm-debug.log
 # Nuxt generate
 dist
 
-# Contentful json access tokens
-
-.contentful.json
 
