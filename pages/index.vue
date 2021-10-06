@@ -21,6 +21,8 @@
 import moment from 'moment';
 import {createClient} from '~/plugins/contentful.js'
 const client = createClient()
+require('dotenv').config();
+
 
 export default {
     name: "ScreenMessageApplication",
@@ -31,10 +33,10 @@ export default {
       }
     },
 
-    asyncData ({env}) {
+    asyncData () {
       return Promise.all([
         client.getEntries({
-          'content_type': env.CTF_POST_TYPE_ID,
+          'content_type': process.env.CTF_POST_TYPE_ID,
           order: '-sys.updatedAt'
         }),
 
@@ -59,7 +61,7 @@ export default {
             this.dark = false;
           }
           client.getEntries({
-            'content_type': 'melding',
+            'content_type': process.env.CTF_POST_TYPE_ID,
             order: '-sys.updatedAt'
           }).then((response) => {
             console.log(response.items.splice(0,3))

@@ -1,13 +1,8 @@
 
+require('dotenv').config();
 
-const config = require('./.contentful.json')
 module.exports = {
-  env: {
-    CTF_SPACE_ID: config.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN,
-    CTF_PERSON_ID: config.CTF_PERSON_ID,
-    CTF_POST_TYPE_ID: config.CTF_POST_TYPE_ID
-  },
+
 
   mode: 'universal',
   generate: {
@@ -52,6 +47,9 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      config.node = {
+        fs: 'empty'
+      } 
       
     }
   }
