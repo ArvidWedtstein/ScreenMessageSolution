@@ -75,34 +75,34 @@ export default {
 </script>
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-  :root{
-    --abbegscolor: #0073cf;
-    --white: #ffffff;
-  }
-  body {
-    font-family: 'poppins';
-    overflow: hidden !important;
-  }
-  * {
-    box-sizing: border-box;
-  }
-  .container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: var(--abbegscolor);
-    width: 100vw;
-    height: 100vh;
-    color: rgb(255, 255, 255, 0.8);
-  }
-  .logo {
-    position: absolute;
-    top: 1vw;
-    left: 40vw;
-    width: 20vw;
-  }
+:root{
+  --abbegscolor: #0073cf;
+  --white: #ffffff;
+}
+body {
+  font-family: 'poppins';
+  overflow: hidden !important;
+}
+* {
+  box-sizing: border-box;
+}
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--abbegscolor);
+  width: 100vw;
+  height: 100vh;
+  color: rgb(255, 255, 255, 0.8);
+}
+.logo {
+  position: absolute;
+  top: 0vh;
+  left: 40vw;
+  width: 20vw;
+}
 
 .messages {
   display: flex;
@@ -117,30 +117,36 @@ export default {
 
 }
 .message {
-
+  display: flex;
   padding: 30px;
   flex-grow: 1;
   width: 50%;
+  height: 40vh;
   position: relative;
-  height: 50vh;
   border: 1px #ffffff solid;
   h1 {
     position: absolute;
-    top: 15%;
+    font-style: italic; 
+    top: 50%;
     transform: translate(-50%, -50%);
     left: 50%;
-    font-size: 25px;
+    font-size: 2.4vh;
+    width: 100%;
+
   }
   h2 {
     font-size: 20px;
+    font-weight: 50;
   }
   &:first-child {
     width: 100%;
-
+    height: 60vh;
+    align-content: center;
+    vertical-align: middle;
     h1 {
-      font-size: 35px;
-      margin-top: 80px;
-
+      font-size: 3.8vh;
+      top: 52%;
+      width: 100%;
     }
   }
 
