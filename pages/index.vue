@@ -144,10 +144,8 @@ body {
   position: absolute;
   top: 0vh;
   left: 50vw;
-  height: 150px;
+  height: 130px;
   transform: translateX(-50%);
-
-
 }
 
 
