@@ -172,12 +172,12 @@ body {
     top: 40%;
     transform: translate(-50%, -50%);
     left: 50%;
-    font-size: 2.2vh;
+    font-size: 25px;
     width: 100%;
     font-weight: 500;
   }
   h2 {
-    font-size: 20px;
+    font-size:20px;
     font-weight: 400;
     
   }
