@@ -187,7 +187,7 @@ body {
     align-content: center;
     vertical-align: middle;
     h1 {
-      font-size: 3.8vh;
+      font-size: 8vh;
       top: 52%;
       width: 100%;
       padding-top: 80px;
