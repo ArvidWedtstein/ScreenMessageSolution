@@ -46,7 +46,7 @@ export default {
 
         ]).then(([response]) => {
           return {
-            messages: response.items.splice(0,3)
+            messages: response.items.splice(0,1)
           }
       }).catch(console.error)
     },
@@ -66,7 +66,7 @@ export default {
             this.dark = false;
           }
           //location.reload();
-          
+
         }, 60 * 1000);
       },
     },
@@ -179,11 +179,11 @@ body {
   h2 {
     font-size:20px;
     font-weight: 400;
-    
+
   }
   &:first-child {
     width: 100%;
-    height: 60vh;
+    height: 95vh;
     align-content: center;
     vertical-align: middle;
     h1 {
