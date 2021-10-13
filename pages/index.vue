@@ -93,8 +93,6 @@ export default {
 
 
             console.log(this.messages[0])
-
-
           }, 10 * 1000)
         }
       },
@@ -190,7 +188,7 @@ body {
   position: relative;
   height: 100%;
   width: 100%;
- // animation: fade 12s linear infinite;
+  animation: fade 12s linear infinite;
 }
 .message {
   display: flex;
