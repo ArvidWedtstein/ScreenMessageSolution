@@ -5,7 +5,7 @@
     <div class="messages">
       <div class="message">
         <transition name="fade">
-        <div v-bind:class="[opacity ? Class : '', bkClass]" class="message-container">
+        <div v-show="showMessage" class="message-container">
           <h1> “{{ messages[0].fields.messagecontent }}“</h1>
           <div class="message-meta">
             <h2 class="authormessage">{{ messages[0].fields.author }}</h2>
@@ -36,9 +36,8 @@ export default {
       return {
         messages: null,
         dark: false,
-        opacity: false,
-        bkClass: 'bk',
-        Class: 'class'
+        showMessage: true,
+        // Class: 'class'
       }
     },
 
@@ -76,21 +75,26 @@ export default {
         }, 60 * 1000);
       },
       fadeMessage() {
-          
-            
+
+
         if (this.messages.length > 1) {
           setInterval(() => {
-            this.opacity = true;
-            setInterval(() => {
-              this.opacity = false
-            }, 1000)
-            const firstmsg = this.messages[0];
-            this.messages.shift();
-            this.messages.push(firstmsg);
-            
+            this.showMessage = false;
+
+            setTimeout( () => {
+              const firstmsg = this.messages[0];
+              this.messages.shift();
+              this.messages.push(firstmsg);
+
+              setTimeout( () => {
+                this.showMessage = true;
+              }, 300)
+            }, 300)
+
+
             console.log(this.messages[0])
-            
-            
+
+
           }, 10 * 1000)
         }
       },
@@ -176,7 +180,7 @@ body {
   display: flex;
   flex-wrap:wrap;
   width: 100%;
-  -webkit-user-select: none; /* Safari */        
+  -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
@@ -247,35 +251,13 @@ body {
   }
 }*/
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 1s ease-out;
+  transition: opacity 300ms ease-out;
 }
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
 
-.bk {
-  transition: all 1s ease-out;
-}
-
-.class {
-  opacity: 1;
-  background: #ff0000;
-}
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 </style>
 
 
