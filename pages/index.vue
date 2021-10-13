@@ -24,7 +24,7 @@
 
 <script>
 import moment from 'moment';
-//import appexii from '~/assets/appexii'
+/*import appexii from '~/assets/appexii'*/
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 
@@ -71,7 +71,7 @@ export default {
           }
           //location.reload();
 
-        }, 70 * 1000);
+        }, 60 * 1000);
       },
       fadeMessage() {
         if (this.messages.length > 1) {
@@ -90,7 +90,7 @@ export default {
 
 
             console.log(this.messages[0])
-          }, 60 * 1000) // tid for å bytte melding
+          }, 50 * 1000)
         }
       },
     },
