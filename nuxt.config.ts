@@ -33,6 +33,7 @@ export default defineNuxtConfig({
     ctf_person_id: process.env.CTF_PERSON_ID,
     ctf_cda_access_token: process.env.CTF_CDA_ACCESS_TOKEN,
     
-  }
+  },
+  target: 'static'
 
 })
