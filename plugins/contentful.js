@@ -7,8 +7,8 @@ const config2 = require('~/env.json')
 // use default environment config for convenience
 // these will be set via `env` property in nuxt.config.js
 const config = {
-  space: config2.ctf_space_id,
-  accessToken: config2.ctf_cda_access_token
+  space: 'ehmsksems2za',
+  accessToken: 'CTF_CDA_ACCESS_TOKEN=tH1SJr15R5mKOg3g4CYRJCqRQjiPTKlPWzEQFtkMia4'
 }
 
 // export `createClient` to use it in page components
