@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="scene"></div>
+    <!--<div class="scene"></div>-->
   </section>
 </template>
 
@@ -22,10 +22,10 @@
 
 <script>
 import moment from 'moment';
-import appexii from '~/assets/appexii'
-import {createClient} from '~/plugins/contentful.js'
+//import appexii from '~/assets/appexii'
+import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
-require('dotenv').config();
+
 
 
 export default {
@@ -40,7 +40,7 @@ export default {
     asyncData () {
       return Promise.all([
         client.getEntries({
-          'content_type': process.env.CTF_POST_TYPE_ID,
+          'content_type': 'melding',
           order: '-sys.updatedAt'
         }),
 
@@ -59,6 +59,7 @@ export default {
       refresh() {
         setInterval(() => {
           this.$nuxt.refresh();
+
            const time = new Date();
           if (time.getHours() >= 16) {
             this.dark = true;
@@ -69,13 +70,28 @@ export default {
 
         }, 60 * 1000);
       },
+      fadeMessage() {
+          console.log('fade!');
+          if (this.messages.length > 1) {
+            setInterval(() => {
+            
+            const firstmsg = this.messages[0];
+            const a = this.messages;
+            a.unshift();
+            a.push(firstmsg);
+            this.messages = a;
+            console.log(this.messages)
+            this.$nuxt.refresh();
+           
+          }, 10 * 1000)
+        }
+      },
     },
 
     mounted() {
       this.refresh();
 
-
-      let config = {
+      /*let config = {
         container: '.scene',
         type: 'video',
         image: '',
@@ -90,7 +106,7 @@ export default {
 
       appexii(
         config
-      )
+      )*/
 
     }
 }
@@ -208,13 +224,30 @@ body {
 
 
 
-.scene {
+/*.scene {
   height: 100vh;
   width: 100%;
   position: fixed;
   z-index: -1;
   * {
     opacity: 0.8;
+  }
+}*/
+
+
+.slide-fade-enter, .slide-fade-leave-to {
+  animation: fadeInOut .5s linear forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 </style>

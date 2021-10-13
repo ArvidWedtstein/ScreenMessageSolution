@@ -9,7 +9,6 @@
     "@contentful/forma-36-fcss": "^0.3.4",
     "@contentful/forma-36-react-components": "^3.98.4",
     "@contentful/forma-36-tokens": "^0.11.1",
-    "@nuxtjs/dotenv": "^1.4.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.0",
     "@testing-library/user-event": "^13.2.1",
@@ -22,16 +21,16 @@
     "contentful-cli": "^1.9.20",
     "cross-env": "^7.0.3",
     "eslint-plugin-vue": "^7.19.1",
-    "nuxt": "^2.15.8",
+    "fs": "0.0.1-security",
+    "nuxt-edge": "latest",
     "reading-time": "^1.5.0",
     "sass": "^1.42.1",
     "sass-loader": "^10.1.1",
-    "three": "^0.133.1",
     "typescript": "^4.4.3"
   },
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
+    "dev": "nuxi dev",
+    "build": "nuxi build",
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
@@ -52,8 +51,7 @@
   },
   "devDependencies": {
     "@contentful/app-scripts": "^0.12.48",
-    "eslint": "^7.32.0",
-    "eslint-loader": "^4.0.2"
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27234503.d5127e9"
   },
   "homepage": "http://localhost:3000"
 }

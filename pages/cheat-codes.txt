@@ -5,3 +5,9 @@ environment: master
 accesstoken: CFPAT-YJ5Rp4wWlJdjlHitckYGdQ5bVwWC36yw9tLD9rMuBkQ
 
 { "metadata": { "tags": [] }, "sys": { "space": { "sys": { "type": "Link", "linkType": "Space", "id": "ehmsksems2za" } }, "id": "7oomLNYdwZtocDfD6AF8S8", "type": "Entry", "createdAt": "2021-09-22T12:23:54.392Z", "updatedAt": "2021-09-22T13:10:35.672Z", "environment": { "sys": { "id": "master", "type": "Link", "linkType": "Environment" } }, "revision": 2, "contentType": { "sys": { "type": "Link", "linkType": "ContentType", "id": "melding" } }, "locale": "en-US" }, "fields": { "author": "Arvid Wedtstein", "messagecontent": "> *Yes, it works*", "date": "2021-09-22T00:00" } } 
+CTF_ACCESS_TOKEN=CFPAT-YJ5Rp4wWlJdjlHitckYGdQ5bVwWC36yw9tLD9rMuBkQ
+CONTENTFUL_ORG_ID=725svtiAYEI1xd7aryM98c
+CTF_SPACE_ID=ehmsksems2za
+CTF_PERSON_ID=""
+CTF_CDA_ACCESS_TOKEN=tH1SJr15R5mKOg3g4CYRJCqRQjiPTKlPWzEQFtkMia4
+CTF_POST_TYPE_ID=melding

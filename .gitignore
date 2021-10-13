@@ -40,6 +40,9 @@ dist
 
 .contentful.json
 
-
+.env
 # vscode
 .vscode
+
+
+.output
