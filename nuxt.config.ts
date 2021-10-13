@@ -25,6 +25,7 @@ export default defineNuxtConfig({
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+
   privateRuntimeConfig: {
     ctf_access_token: process.env.CTF_ACCESS_TOKEN,
     contentful_org_id: process.env.CONTENTFUL_ORG_ID,
