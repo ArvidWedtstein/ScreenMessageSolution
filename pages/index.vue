@@ -36,8 +36,7 @@ export default {
       return {
         messages: null,
         dark: false,
-        showMessage: true,
-        // Class: 'class'
+        showMessage: true
       }
     },
 
