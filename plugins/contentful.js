@@ -15,6 +15,6 @@ const config = {
 module.exports = {
   createClient () {
     return contentful.createClient(config);
-    
+
   }
 }

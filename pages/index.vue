@@ -1,17 +1,29 @@
 <template>
-  <section v-bind:class="{ dark: dark }" class="container">
-    <img v-if="dark" class="logo" src="/appexLogoNy.png" alt="Logo"/>
-    <img v-else class="logo" src="/appexLogoNyDark.png" alt="Logo"/>
-    <div class="messages">
-      <div class="message">
+  <section
+    v-bind:class="{ dark: dark }"
+    class="container"
+  >
+    <img
+      v-if="dark"
+      class="logo"
+      src="/appexLogoNy.png"
+      alt="Logo"
+    />
+    <img
+      v-else
+      class="logo"
+      src="/appexLogoNyDark.png"
+      alt="Logo"
+    />
+    <div
+      class="messages"
+      v-if="activeMessage"
+    >
+      <div
+        class="message"
+      >
         <transition name="fade">
-        <div v-bind:class="[opacity ? Class : '', bkClass]" class="message-container">
-          <h1> “{{ messages[0].fields.messagecontent }}“</h1>
-          <div class="message-meta">
-            <h2 class="authormessage">{{ messages[0].fields.author }}</h2>
-            <h2>{{ timeFormat(messages[0].fields.date) }}</h2>
-          </div>
-        </div>
+          <Message :key="activeMessageIndex" :message="activeMessage"></Message>
         </transition>
       </div>
     </div>
@@ -23,116 +35,121 @@
 
 
 <script>
-import moment from 'moment';
 //import appexii from '~/assets/appexii'
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 
+import Message from "~/components/Message.vue"
 
 
 export default {
-    name: "ScreenMessageApplication",
-    data() {
-      return {
-        messages: null,
-        dark: false,
-        opacity: false,
-        bkClass: 'bk',
-        Class: 'class'
-      }
-    },
-
-    asyncData () {
-      return Promise.all([
-        client.getEntries({
-          'content_type': 'melding',
-          order: '-sys.updatedAt'
-        }),
-
-        ]).then(([response]) => {
-          return {
-            messages: response.items.splice(0,3)
-          }
-      }).catch(console.error)
-    },
-
-    methods: {
-      timeFormat(time) {
-        return moment(String(time)).format("DD.MM.YYYY - hh:mm")
-      },
-      // auto update with new data regularly
-      refresh() {
-        setInterval(() => {
-          this.$nuxt.refresh();
-
-           const time = new Date();
-          if (time.getHours() >= 16) {
-            this.dark = true;
-          } else {
-            this.dark = false;
-          }
-          //location.reload();
-
-        }, 60 * 1000);
-      },
-      fadeMessage() {
-          
-            
-        if (this.messages.length > 1) {
-          setInterval(() => {
-            this.opacity = true;
-            
-            const firstmsg = this.messages[0];
-            this.messages.shift();
-            this.messages.push(firstmsg);
-            
-            console.log(this.messages[0])
-            
-            setInterval(() => {
-              this.opacity = false
-            }, 1000)
-          }, 10 * 1000)
-        }
-      },
-    },
-
-    mounted() {
-      this.refresh();
-      this.fadeMessage();
-      /*let config = {
-        container: '.scene',
-        type: 'video',
-        image: '',
-        video: '/blob.mp4',
-        // resolutionX: 400,
-        // resolutionY: 400,
-        // background: '#000',
-        // foreground: '#FFF',
-        invert: false,
-        color: false
-      }
-
-      appexii(
-        config
-      )*/
-
+  components: {Message},
+  name: "ScreenMessageApplication",
+  data () {
+    return {
+      messages: null,
+      dark: false,
+      opacity: false,
+      bkClass: 'bk',
+      Class: 'class',
+      activeMessageIndex: 0
     }
+  },
+
+  asyncData () {
+    return Promise.all([
+      client.getEntries({
+        'content_type': 'melding',
+        order: '-sys.updatedAt'
+      }),
+
+    ]).then(([response]) => {
+      return {
+        messages: response.items.splice(0, 3)
+      }
+    }).catch(console.error)
+  },
+
+  methods: {
+
+    // auto update with new data regularly
+    refresh () {
+      setInterval(() => {
+        this.$nuxt.refresh();
+
+        const time = new Date();
+        if (time.getHours() >= 16) {
+          this.dark = true;
+        } else {
+          this.dark = false;
+        }
+        //location.reload();
+
+      }, 60 * 1000);
+    },
+    loopActiveMessage () {
+
+      if (this.messages.length > 1) {
+        setInterval(() => {
+
+          if (this.activeMessageIndex < this.messages.length - 1) {
+            this.activeMessageIndex++;
+          }
+          else {
+            this.activeMessageIndex = 0;
+          }
+
+        }, 5 * 1000)
+      }
+    },
+  },
+
+  computed: {
+    activeMessage () {
+      if (!this.messages) {
+        return null;
+      }
+      return this.messages[this.activeMessageIndex];
+    }
+  },
+
+  mounted () {
+    this.refresh();
+    this.loopActiveMessage();
+    /*let config = {
+      container: '.scene',
+      type: 'video',
+      image: '',
+      video: '/blob.mp4',
+      // resolutionX: 400,
+      // resolutionY: 400,
+      // background: '#000',
+      // foreground: '#FFF',
+      invert: false,
+      color: false
+    }
+
+    appexii(
+      config
+    )*/
+
+  }
 }
 
 
 
 </script>
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
-:root{
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+:root {
   --abbegscolor: #0073cf;
   --white: #ffffff;
-  --abbegsdark: #221E20;
-  --light: #D6D2CE;
-  --green: #DDE78B;
+  --abbegsdark: #221e20;
+  --light: #d6d2ce;
+  --green: #dde78b;
 }
 body {
-  font-family: 'poppins';
+  font-family: "poppins";
   overflow: hidden !important;
 }
 * {
@@ -174,19 +191,18 @@ body {
 }
 .messages {
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   width: 100%;
-  -webkit-user-select: none; /* Safari */        
+  -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
-
 }
 .message-container {
   position: relative;
   height: 100%;
   width: 100%;
-  animation: fade 12s linear infinite;
+  //animation: fade 12s linear infinite;
 }
 .message {
   display: flex;
@@ -206,9 +222,8 @@ body {
     font-weight: 500;
   }
   h2 {
-    font-size:20px;
+    font-size: 20px;
     font-weight: 400;
-
   }
   &:first-child {
     width: 100%;
@@ -222,7 +237,6 @@ body {
       padding-top: 80px;
     }
   }
-
 }
 
 .message-meta {
@@ -235,8 +249,6 @@ body {
   justify-content: space-between;
 }
 
-
-
 /*.scene {
   height: 100vh;
   width: 100%;
@@ -246,12 +258,12 @@ body {
     opacity: 0.8;
   }
 }*/
-.fade-enter-active, .fade-leave-active {
- // transition: opacity 1s ease-out;
+.fade-enter-active{
+  animation: fadeIn 1s ease;
 }
 
-.fade-enter, .fade-leave-to {
-  opacity: 0;
+.fade-leave-active {
+  animation: fadeOut 1s ease;
 }
 
 .bk {
@@ -262,17 +274,14 @@ body {
   opacity: 1;
   background: #ff0000;
 }
-@keyframes fade {
-  0% {
+@keyframes fadeIn {
+  from{
     opacity: 0;
   }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
+}
+
+@keyframes fadeOut {
+  from{
     opacity: 0;
   }
 }

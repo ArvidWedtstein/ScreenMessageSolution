@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@contentful/app-sdk": "^3.40.0",
+    "@contentful/app-sdk": "^4.2.1",
     "@contentful/field-editor-single-line": "^0.15.4",
-    "@contentful/field-editor-test-utils": "^0.17.3",
+    "@contentful/field-editor-test-utils": "^0.18.0",
     "@contentful/forma-36-fcss": "^0.3.4",
     "@contentful/forma-36-react-components": "^3.98.4",
     "@contentful/forma-36-tokens": "^0.11.1",
@@ -25,7 +25,7 @@
     "nuxt-edge": "latest",
     "reading-time": "^1.5.0",
     "sass": "^1.42.1",
-    "sass-loader": "^10.1.1",
+    "sass-loader": "10",
     "typescript": "^4.4.3"
   },
   "scripts": {
@@ -50,7 +50,7 @@
     ]
   },
   "devDependencies": {
-    "@contentful/app-scripts": "^0.12.48",
+    "@contentful/app-scripts": "^0.13.12",
     "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27234503.d5127e9"
   },
   "homepage": "http://localhost:3000"
