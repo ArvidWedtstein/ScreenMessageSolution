@@ -3,7 +3,7 @@
 
 
 const contentful = require('contentful');
-const config2 = require('~/env.json')
+const config2 = require('env.json')
 // use default environment config for convenience
 // these will be set via `env` property in nuxt.config.js
 const config = {
