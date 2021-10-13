@@ -97,7 +97,7 @@ export default {
 
 
             console.log(this.messages[0])
-          }, 10 * 1000)
+          }, 30 * 1000)
         }
       },
     },
