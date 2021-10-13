@@ -4,7 +4,7 @@
 > 
 ## Screen Message
 
-Laget av Aleksander, Arvid (med hjelp av Harald, David og Victor)
+Laget av Aleksander, Arvid (med hjelp av Harald, David, Victor og Ola)
 
 
 ## How to use

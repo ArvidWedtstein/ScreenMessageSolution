@@ -3,14 +3,16 @@
     <img v-if="dark" class="logo" src="/appexLogoNy.png" alt="Logo"/>
     <img v-else class="logo" src="/appexLogoNyDark.png" alt="Logo"/>
     <div class="messages">
-      <div class="message" v-for="message in messages" v-bind:key="message.sys.id">
-        <div class="message-container">
-          <h1> “{{ message.fields.messagecontent }}“</h1>
+      <div class="message">
+        <transition name="fade">
+        <div v-bind:class="[opacity ? Class : '', bkClass]" class="message-container">
+          <h1> “{{ messages[0].fields.messagecontent }}“</h1>
           <div class="message-meta">
-            <h2 class="authormessage">{{ message.fields.author }}</h2>
-            <h2>{{ timeFormat(message.fields.date) }}</h2>
+            <h2 class="authormessage">{{ messages[0].fields.author }}</h2>
+            <h2>{{ timeFormat(messages[0].fields.date) }}</h2>
           </div>
         </div>
+        </transition>
       </div>
     </div>
 
@@ -33,7 +35,10 @@ export default {
     data() {
       return {
         messages: null,
-        dark: false
+        dark: false,
+        opacity: false,
+        bkClass: 'bk',
+        Class: 'class'
       }
     },
 
@@ -46,7 +51,7 @@ export default {
 
         ]).then(([response]) => {
           return {
-            messages: response.items.splice(0,1)
+            messages: response.items.splice(0,3)
           }
       }).catch(console.error)
     },
@@ -71,18 +76,21 @@ export default {
         }, 60 * 1000);
       },
       fadeMessage() {
-          console.log('fade!');
-          if (this.messages.length > 1) {
-            setInterval(() => {
+          
             
+        if (this.messages.length > 1) {
+          setInterval(() => {
+            this.opacity = true;
+            setInterval(() => {
+              this.opacity = false
+            }, 1000)
             const firstmsg = this.messages[0];
-            const a = this.messages;
-            a.unshift();
-            a.push(firstmsg);
-            this.messages = a;
-            console.log(this.messages)
-            this.$nuxt.refresh();
-           
+            this.messages.shift();
+            this.messages.push(firstmsg);
+            
+            console.log(this.messages[0])
+            
+            
           }, 10 * 1000)
         }
       },
@@ -90,7 +98,7 @@ export default {
 
     mounted() {
       this.refresh();
-
+      this.fadeMessage();
       /*let config = {
         container: '.scene',
         type: 'video',
@@ -153,9 +161,6 @@ body {
   }
 }
 
-.authormessage {
-  text-transform: capitalize;
-}
 .logo {
   position: absolute;
   top: 30px;
@@ -164,16 +169,24 @@ body {
   transform: translateX(-50%);
 }
 
-
+.authormessage {
+  text-transform: capitalize;
+}
 .messages {
   display: flex;
   flex-wrap:wrap;
   width: 100%;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+
 }
 .message-container {
   position: relative;
   height: 100%;
   width: 100%;
+ // animation: fade 12s linear infinite;
 }
 .message {
   display: flex;
@@ -233,21 +246,34 @@ body {
     opacity: 0.8;
   }
 }*/
-
-
-.slide-fade-enter, .slide-fade-leave-to {
-  animation: fadeInOut .5s linear forwards;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s ease-out;
 }
 
-@keyframes fadeInOut {
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.bk {
+  transition: all 1s ease-out;
+}
+
+.class {
+  opacity: 1;
+  background: #ff0000;
+}
+@keyframes fade {
   0% {
-    opacity: 1;
-  }
-  50% {
     opacity: 0;
   }
-  100% {
+  10% {
     opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 </style>

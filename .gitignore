@@ -44,5 +44,5 @@ dist
 # vscode
 .vscode
 
-
+env.json
 .output
