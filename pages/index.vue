@@ -71,7 +71,7 @@ export default {
           }
           //location.reload();
 
-        }, 60 * 1000);
+        }, 70 * 1000);
       },
       fadeMessage() {
         if (this.messages.length > 1) {
@@ -90,7 +90,7 @@ export default {
 
 
             console.log(this.messages[0])
-          }, 61 * 1000) // tid for å bytte melding
+          }, 60 * 1000) // tid for å bytte melding
         }
       },
     },
