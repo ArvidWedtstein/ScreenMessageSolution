@@ -24,7 +24,7 @@
 
 <script>
 import moment from 'moment';
-import appexii from '~/assets/appexii'
+//import appexii from '~/assets/appexii'
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 
@@ -98,6 +98,7 @@ export default {
     mounted() {
       this.refresh();
       this.fadeMessage();
+      /*
       let config = {
         container: '.scene',
         type: 'video',
@@ -113,7 +114,7 @@ export default {
 
       appexii(
         config
-      )
+      )*/
 
     }
 }
