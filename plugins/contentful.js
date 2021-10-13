@@ -8,7 +8,7 @@ const contentful = require('contentful');
 // these will be set via `env` property in nuxt.config.js
 const config = {
   space: 'ehmsksems2za',
-  accessToken: 'CTF_CDA_ACCESS_TOKEN=tH1SJr15R5mKOg3g4CYRJCqRQjiPTKlPWzEQFtkMia4'
+  accessToken: 'tH1SJr15R5mKOg3g4CYRJCqRQjiPTKlPWzEQFtkMia4'
 }
 
 // export `createClient` to use it in page components
