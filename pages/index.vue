@@ -81,16 +81,16 @@ export default {
         if (this.messages.length > 1) {
           setInterval(() => {
             this.opacity = true;
-            setInterval(() => {
-              this.opacity = false
-            }, 1000)
+            
             const firstmsg = this.messages[0];
             this.messages.shift();
             this.messages.push(firstmsg);
             
             console.log(this.messages[0])
             
-            
+            setInterval(() => {
+              this.opacity = false
+            }, 1000)
           }, 10 * 1000)
         }
       },
@@ -186,7 +186,7 @@ body {
   position: relative;
   height: 100%;
   width: 100%;
- // animation: fade 12s linear infinite;
+  animation: fade 12s linear infinite;
 }
 .message {
   display: flex;
@@ -247,7 +247,7 @@ body {
   }
 }*/
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 1s ease-out;
+ // transition: opacity 1s ease-out;
 }
 
 .fade-enter, .fade-leave-to {
