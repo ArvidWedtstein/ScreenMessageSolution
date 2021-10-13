@@ -5,11 +5,11 @@
     <div class="messages">
       <div class="message">
         <transition name="fade">
-        <div v-show="showMessage" class="message-container">
-          <h1> “{{ messages[0].fields.messagecontent }}“</h1>
+        <div  v-show="showMessage" class="message-container">
+          <h1> “{{ messages[msgindex].fields.messagecontent }}“</h1>
           <div class="message-meta">
-            <h2 class="authormessage">{{ messages[0].fields.author }}</h2>
-            <h2>{{ timeFormat(messages[0].fields.date) }}</h2>
+            <h2 class="authormessage">{{ messages[msgindex].fields.author }}</h2>
+            <h2>{{ timeFormat(messages[msgindex].fields.date) }}</h2>
           </div>
         </div>
         </transition>
@@ -36,7 +36,8 @@ export default {
       return {
         messages: null,
         dark: false,
-        showMessage: true
+        showMessage: true,
+        msgindex: 0
       }
     },
 
@@ -79,9 +80,15 @@ export default {
             this.showMessage = false;
 
             setTimeout( () => {
-              const firstmsg = this.messages[0];
+              if (this.msgindex >= this.messages.length - 1) {
+                this.msgindex = 0;
+              } else {
+                this.msgindex++;
+              }
+
+              /*const firstmsg = this.messages[0];
               this.messages.shift();
-              this.messages.push(firstmsg);
+              this.messages.push(firstmsg);*/
 
               setTimeout( () => {
                 this.showMessage = true;
@@ -90,7 +97,7 @@ export default {
 
 
             console.log(this.messages[0])
-          }, 50 * 1000)
+          }, 10 * 1000)
         }
       },
     },
