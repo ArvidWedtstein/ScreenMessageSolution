@@ -90,7 +90,7 @@ export default {
 
 
             console.log(this.messages[0])
-          }, 10 * 1000)
+          }, 61 * 1000) // tid for å bytte melding
         }
       },
     },
