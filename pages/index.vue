@@ -74,8 +74,6 @@ export default {
         }, 60 * 1000);
       },
       fadeMessage() {
-
-
         if (this.messages.length > 1) {
           setInterval(() => {
             this.showMessage = false;
