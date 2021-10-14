@@ -10,7 +10,8 @@ Laget av Aleksander, Arvid (med hjelp av Harald, David, Victor og Ola)
 ## How to use
 
 <p align="left">Post en melding på contentful</p>
-<p align="left">De 3 siste meldingene vil poppe opp på skjermen</p>
+<p align="left">Den siste meldingene vil poppe opp på skjermen</p>
+<p align="left">Om det er flere enn 1 melding så vil applikasjonen bytte mellom meldingen</p>
 
 ## How to run local
 
