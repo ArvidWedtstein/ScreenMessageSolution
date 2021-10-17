@@ -27,39 +27,6 @@ import moment from 'moment';
 /*import appexii from '~/assets/appexii'*/
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
-var date = new Date().toString();
-var currenthour = moment(String(date)).format('HH');
-var currentmin = moment(String(date)).format('mm');
-var https = require("https");
-var userName='ArvidWedtstein';
-var options = {
-    host :"api.github.com",
-    path: "/users/" +userName+ "/repos",
-    method : 'GET',
-    headers: {'User-Agent':'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)'}
-  }
-
-var request = https.request(options, function(response){
-    var body = '';
-    response.on('data',function(chunk){
-        body+=chunk;
-    });
-    response.on('end',function(){
-        var json = JSON.parse(body);
-        console.log(moment(String(json[8].updated_at)).format('HH:mm'));
-        var lastdeploymin = moment(String(json[8].updated_at)).format('mm');
-        var lastdeployhour = moment(String(json[8].updated_at)).format('HH');
-        console.log(lastdeploymin, lastdeployhour + `\n${currentmin} ${currenthour}`)
-        if (lastdeployhour == currenthour && lastdeploymin >= currentmin-10) {
-          console.log('refresh')
-        }
-    });
-
-});
-request.on('error', function(e) {
-    console.error('and the error is '+e);
-});
-request.end();
 
 export default {
     name: "ScreenMessageApplication",
@@ -87,13 +54,48 @@ export default {
 
     methods: {
       timeFormat(time) {
-        return moment(String(time)).format("DD.MM.YYYY - hh:mm")
+        return moment(String(time)).format("DD.MM.YYYY - HH:mm")
       },
       // auto update with new data regularly
       refresh() {
         setInterval(async () => {
           this.$nuxt.refresh();
 
+
+          var date = new Date().toString();
+          var currenthour = moment(String(date)).format('HH');
+          var currentmin = moment(String(date)).format('mm');
+          var currentday = moment(String(date)).format('DD-MM-YYYY');
+          var https = require("https");
+          var userName='ArvidWedtstein';
+          var options = {
+              host :"api.github.com",
+              path: "/users/" +userName+ "/repos",
+              method : 'GET',
+              headers: {'User-Agent':'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)'}
+            }
+
+          var request = https.request(options, function(response){
+              var body = '';
+              response.on('data',function(chunk){
+                  body+=chunk;
+              });
+              response.on('end',function(){
+                  var json = JSON.parse(body);
+                  var lastdeploymin = moment(String(json[8].updated_at)).format('MM');
+                  var lastdeployhour = moment(String(json[8].updated_at)).format('HH');
+                  var lastdeployday = moment(String(json[8].updated_at)).format('DD-MM-YYYY');
+
+                  if (lastdeployday == currentday && lastdeployhour == currenthour && lastdeploymin >= currentmin-20) {
+                    location.reload();
+                  }
+              });
+
+          });
+          request.on('error', function(e) {
+              console.error('and the error is '+e);
+          });
+          request.end();
 
           const time = new Date();
           if (time.getHours() >= 16) {
