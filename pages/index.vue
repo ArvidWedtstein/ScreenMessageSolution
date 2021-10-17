@@ -82,11 +82,12 @@ export default {
               });
               response.on('end',function(){
                   var json = JSON.parse(body);
-                  var lastdeploymin = moment(String(json[8].updated_at)).format('MM');
-                  var lastdeployhour = moment(String(json[8].updated_at)).format('HH');
-                  var lastdeployday = moment(String(json[8].updated_at)).format('DD-MM-YYYY');
+                  var lastdeploymin = moment(String(json[8].pushed_at)).format('MM');
+                  var lastdeployhour = moment(String(json[8].pushed_at)).format('HH');
+                  var lastdeployday = moment(String(json[8].pushed_at)).format('DD-MM-YYYY');
                   console.log(`${currentday}-${currenthour}:${currentmin}\n${lastdeployday}-${lastdeployhour}:${lastdeploymin}`)
                   if (lastdeployday == currentday && lastdeployhour == currenthour && lastdeploymin >= currentmin-20) {
+                    console.log('reload!');
                     location.reload();
                   }
               });
