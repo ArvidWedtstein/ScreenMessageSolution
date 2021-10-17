@@ -28,6 +28,12 @@ import moment from 'moment';
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 
+
+var date = new Date().toString();
+var currenthour = moment(String(date)).format('HH');
+var currentmin = moment(String(date)).format('mm');
+var currentday = moment(String(date)).format('DD-MM-YYYY');
+var current = `${currenthour}${currentmin}`; 
 export default {
     name: "ScreenMessageApplication",
     data() {
@@ -62,11 +68,7 @@ export default {
           this.$nuxt.refresh();
 
 
-          var date = new Date().toString();
-          var currenthour = moment(String(date)).format('HH');
-          var currentmin = moment(String(date)).format('mm');
-          var currentday = moment(String(date)).format('DD-MM-YYYY');
-          var current = `${currenthour}${currentmin}`; 
+          
 
           var https = require("https");
           var userName='ArvidWedtstein';
@@ -90,8 +92,12 @@ export default {
                   var lastdeployday = moment(String(json[8].pushed_at)).format('DD-MM-YYYY');
                   var deploy = `${lastdeployhour}${lastdeploymin}`;
                   console.log(`${current} ${deploy}`)
-                  if (lastdeployday == currentday && deploy > current) {
+                  if (lastdeployday == currentday && deploy != current) {
                     current = deploy;
+                    date = new Date().toString();
+                    currenthour = moment(String(date)).format('HH');
+                    currentmin = moment(String(date)).format('mm');
+                    currentday = moment(String(date)).format('DD-MM-YYYY');
                     console.log('reload!');
                     location.reload();
                     console.log(`${current} ${deploy}`)
