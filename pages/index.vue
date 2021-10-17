@@ -85,7 +85,7 @@ export default {
                   var lastdeploymin = moment(String(json[8].updated_at)).format('MM');
                   var lastdeployhour = moment(String(json[8].updated_at)).format('HH');
                   var lastdeployday = moment(String(json[8].updated_at)).format('DD-MM-YYYY');
-
+                  console.log(`${currentday}-${currenthour}:${currentmin}\n${lastdeployday}-${lastdeployhour}:${lastdeploymin}`)
                   if (lastdeployday == currentday && lastdeployhour == currenthour && lastdeploymin >= currentmin-20) {
                     location.reload();
                   }
