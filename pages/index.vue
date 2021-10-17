@@ -67,7 +67,7 @@ export default {
           var currentmin = moment(String(date)).format('mm');
           var currentday = moment(String(date)).format('DD-MM-YYYY');
           var current = `${currenthour}${currentmin}`; 
-          
+
           var https = require("https");
           var userName='ArvidWedtstein';
           var options = {
@@ -89,10 +89,12 @@ export default {
                   var lastdeployhour = moment(String(json[8].pushed_at)).format('HH');
                   var lastdeployday = moment(String(json[8].pushed_at)).format('DD-MM-YYYY');
                   var deploy = `${lastdeployhour}${lastdeploymin}`;
-                  if (lastdeployday == currentday && deploy >= current) {
+                  console.log(`${current} ${deploy}`)
+                  if (lastdeployday == currentday && deploy > current) {
                     current = deploy;
                     console.log('reload!');
                     location.reload();
+                    console.log(`${current} ${deploy}`)
                   }
               });
 
