@@ -66,6 +66,8 @@ export default {
           var currenthour = moment(String(date)).format('HH');
           var currentmin = moment(String(date)).format('mm');
           var currentday = moment(String(date)).format('DD-MM-YYYY');
+          var current = `${currenthour}${currentmin}`; 
+          
           var https = require("https");
           var userName='ArvidWedtstein';
           var options = {
@@ -73,7 +75,7 @@ export default {
               path: "/users/" +userName+ "/repos",
               method : 'GET',
               headers: {'User-Agent':'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)'}
-            }
+          }
 
           var request = https.request(options, function(response){
               var body = '';
@@ -81,12 +83,14 @@ export default {
                   body+=chunk;
               });
               response.on('end',function(){
+
                   var json = JSON.parse(body);
-                  var lastdeploymin = moment(String(json[8].pushed_at)).format('MM');
+                  var lastdeploymin = moment(String(json[8].pushed_at)).format('mm');
                   var lastdeployhour = moment(String(json[8].pushed_at)).format('HH');
                   var lastdeployday = moment(String(json[8].pushed_at)).format('DD-MM-YYYY');
-                  console.log(`${currentday}-${currenthour}:${currentmin}\n${lastdeployday}-${lastdeployhour}:${lastdeploymin}`)
-                  if (lastdeployday == currentday && lastdeployhour == currenthour && lastdeploymin >= currentmin-20) {
+                  var deploy = `${lastdeployhour}${lastdeploymin}`;
+                  if (lastdeployday == currentday && deploy >= current) {
+                    current = deploy;
                     console.log('reload!');
                     location.reload();
                   }
