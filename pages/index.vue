@@ -118,7 +118,6 @@ export default {
         }, 60 * 1000);
       },
       fadeMessage() {
-<<<<<<< HEAD
         if (this.messages.length > 1) {
           setInterval(() => {
             this.showMessage = false;
@@ -142,24 +141,6 @@ export default {
 
             console.log(this.messages[0])
           }, 30 * 1000)
-=======
-
-
-        if (this.messages.length > 1) {
-          setInterval(() => {
-            this.opacity = true;
-
-            const firstmsg = this.messages[0];
-            this.messages.shift();
-            this.messages.push(firstmsg);
-
-            console.log(this.messages[0])
-
-            setInterval(() => {
-              this.opacity = false
-            }, 1000)
-          }, 10 * 1000)
->>>>>>> 3d3d5895 (remove quotes)
         }
       },
     },
