@@ -5,8 +5,8 @@
     <div class="messages">
       <div class="message">
         <transition name="fade">
-        <div  v-show="showMessage" class="message-container">
-          <h1> “{{ messages[msgindex].fields.messagecontent }}“</h1>
+        <div v-show="showMessage" class="message-container">
+          <h1>{{ messages[msgindex].fields.messagecontent }}</h1>
           <div class="message-meta">
             <h2 class="authormessage">{{ messages[msgindex].fields.author }}</h2>
             <h2>{{ timeFormat(messages[msgindex].fields.date) }}</h2>
@@ -33,7 +33,7 @@ var date = new Date().toString();
 var currenthour = moment(String(date)).format('HH');
 var currentmin = moment(String(date)).format('mm');
 var currentday = moment(String(date)).format('DD-MM-YYYY');
-var current = `${currenthour}${currentmin}`; 
+var current = `${currenthour}${currentmin}`;
 export default {
     name: "ScreenMessageApplication",
     data() {
@@ -68,7 +68,7 @@ export default {
           this.$nuxt.refresh();
 
 
-          
+
 
           var https = require("https");
           var userName='ArvidWedtstein';
@@ -118,6 +118,7 @@ export default {
         }, 60 * 1000);
       },
       fadeMessage() {
+<<<<<<< HEAD
         if (this.messages.length > 1) {
           setInterval(() => {
             this.showMessage = false;
@@ -141,6 +142,24 @@ export default {
 
             console.log(this.messages[0])
           }, 30 * 1000)
+=======
+
+
+        if (this.messages.length > 1) {
+          setInterval(() => {
+            this.opacity = true;
+
+            const firstmsg = this.messages[0];
+            this.messages.shift();
+            this.messages.push(firstmsg);
+
+            console.log(this.messages[0])
+
+            setInterval(() => {
+              this.opacity = false
+            }, 1000)
+          }, 10 * 1000)
+>>>>>>> 3d3d5895 (remove quotes)
         }
       },
     },
